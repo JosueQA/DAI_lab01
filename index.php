@@ -1,5 +1,3 @@
-<?php include 'funciones.php' ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,27 +8,33 @@
 
 </head>
 <body>
-<h2>Formulario de contacto</h2>
+<h2>📝 Formulario de contacto</h2>
 
-<form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+<form action="<?= $_SERVER["PHP_SELF"] ?> " method="post">
     <label for="nombre">👤 Nombre:</label><br>
     <input type="text" id="nombre" name="nombre" required><br><br>
 
     <label for="email">📧 Correo electrónico:</label><br>
     <input type="email" id="email" name="email" required><br><br>
 
+    <label for="telefono">📱 Nro de teléfono:</label><br>
+    <input type="tel" id="telefono" name="telefono" placeholder="999 999 999" inputmode="numeric" required><br><br>
+
+    <!-- etiqueta de numero anterior
     <label for="numero">📱 Numero:</label><br>
     <input type="number" id="numero" name="numero" required><br><br>
+    -->
+
 
     <input type="submit" value="Enviar">
-    <input type="reset" value="Limpiar">
+    <input type="reset" value="Limpiar"><br><br>
 </form>
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = htmlspecialchars($_POST["nombre"]);
     $email = htmlspecialchars($_POST["email"]);
-    $numero = htmlspecialchars($_POST["numero"]);
+    $numero = htmlspecialchars($_POST["telefono"]);
 
     $archivo_csv = fopen("datos.csv", "a");
 
@@ -56,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Aquí irían tus datos -->
     <?php ingresar_contacto(); ?>
 
-
     </tbody>
 </table>
 
+<div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
