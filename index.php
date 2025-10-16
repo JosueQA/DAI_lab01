@@ -15,7 +15,7 @@
     <label for="email">📧 Correo electrónico:</label><br>
     <input type="email" id="email" name="email" required><br><br>
 
-    <label for="telefono">📱 Número de teléfono:</label><br>
+    <label for="telefono">📱 Nro de teléfono:</label><br>
     <input type="tel" id="telefono" name="telefono" placeholder="999 999 999" inputmode="numeric" required><br><br>
 
     <!-- etiqueta de numero anterior
@@ -24,7 +24,7 @@
     -->
 
     <input type="submit" value="Enviar">
-    <input type="reset" value="Limpiar">
+    <input type="reset" value="Limpiar"><br><br>
 </form>
 
 <?php
