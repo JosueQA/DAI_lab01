@@ -2,8 +2,8 @@
 include_once 'templates/header.php';
 ?>
     <section>
-    <h2>Formulario de Contacto</h2>
-    <?php include_once 'templates/formulario.php'; ?>
+        <h2>Formulario de Contacto</h2>
+        <?php include_once 'templates/formulario.php'; ?>
     </section>
 
 <?php include_once 'templates/formulario.php'; ?>
