@@ -1,24 +1,19 @@
 <?php
 $contacto_id = "";
 $contacto = "";
-if (isset($_GET['crud'])) {
+if (isset($_GET['crud']) and $_GET['crud'] == "Editar") {
+    $contacto_id = intval($_GET['id']);
+    $archivo_csv = fopen("data/datos.csv", "r");
 
-    switch ($_GET['crud']) {
-        case 'Editar':
-            $contacto_id = intval($_GET['id']);
-            $archivo_csv = fopen("data/datos.csv", "r");
-
-            # Buscamos el contacto
-            $indice = 0;
-            while (($datos = fgetcsv($archivo_csv)) !== false) {
-                global $contacto;
-                if ($indice === $contacto_id) {
-                    $contacto = $datos;
-                    break;
-                }
-                $indice++;
-            }
+    # Buscamos el contacto
+    $indice = 0;
+    while (($datos = fgetcsv($archivo_csv)) !== false) {
+        global $contacto;
+        if ($indice === $contacto_id) {
+            $contacto = $datos;
             break;
+        }
+        $indice++;
     }
 }
 
@@ -71,13 +66,6 @@ function contacto_valor($posicion)
 
     <label for="imagen" class="form-label">Foto del contacto:</label><br>
     <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control"><br>
-    <?php
-    if (contacto_valor(3)) {
-        echo '<li class="list-group-item"><img src="assets/imagenes/' . htmlspecialchars($contacto[3]) . '" alt="Foto" style="width:100px; border-radius:8px;"> </li>';
-    } else {
-        echo 'Sin foto';
-    }
-    ?>
 
     <button type="submit" class="btn btn-success mt-3">Guardar</button>
     <button type="reset" class="btn btn-secondary mt-3">Limpiar</button>

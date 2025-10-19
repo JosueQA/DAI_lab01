@@ -1,31 +1,6 @@
 <?php
-function lista_contactos() {
-    $archivo_csv = fopen("data/datos.csv", "r");
-    $indice = 0;
 
-    # En cada iteración se relaciona a un numero de indice que va de 0 hasta que ya no hayan lineas en el .csv, y que, por orden, coincide con su valor en su campo.
-    while (($datos = fgetcsv($archivo_csv)) !== false) {
-        echo "<tr>";
-
-        $link = "contacto.php?id=$indice";
-
-        // Enlace al nombre del contacto. $datos[0] = Nombre
-        echo "<td><a href='$link'>" . htmlspecialchars($datos[0]) . "</a></td>";
-
-        // Enlace a editar el contacto
-        $link = "contacto.php?id=$indice&crud=Editar";
-        echo "<td><button 
-                class='btn btn-warning mt-3' 
-                onclick=\"window.location.href='$link'\"> Editar </button></td>";
-
-        // Boton sin funcionalidad
-        echo "<td><button class='btn btn-danger mt-3'>Eliminar</button></td>";
-
-        echo "</tr>";
-        $indice++;
-    }
-    fclose($archivo_csv);
-}
+include_once 'includes/buscar_contacto.php';
 
 function guardarContacto($nombre, $email, $telefono, $imagen = '') {
     $archivo_csv = fopen("data/datos.csv", "a");
@@ -99,4 +74,25 @@ function editar_contacto($id) {
     }
 
     echo '</section>';
+}
+
+function eliminar_contacto($id) {
+    $contacto = buscar_contacto($id);
+
+    $csv_actual = fopen("data/datos.csv", "r");
+    $csv_nuevo = fopen("data/temp.csv", "w");
+
+    while (($linea = fgetcsv($csv_actual)) !== false) {
+        if ($linea[0] !== $contacto[0]) {
+            fputcsv($csv_nuevo, $linea);
+        }
+    }
+
+    fclose($csv_actual);
+    fclose($csv_nuevo);
+
+    rename("data/temp.csv", "data/datos.csv");
+
+    header("Location: index.php");
+    exit;
 }

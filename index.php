@@ -1,16 +1,10 @@
 <?php
 include_once 'templates/header.php';
-include_once 'includes/funciones.php';
+include_once 'templates/lista_de_contactos.php';
+include_once 'includes/contactos_crud.php';
 ?>
 
 <section class="container mt-4">
-
-<?php
-// 🔍 Si se está visualizando un contacto
-if (isset($_GET['id'])) {
-    ver_contacto(intval($_GET['id']));
-} else {
-?>
 
     <h2>Lista de Contactos</h2>
 
@@ -32,7 +26,6 @@ if (isset($_GET['id'])) {
 
     </tbody>
 </table>
-<?php } // 🔚 Fin del else ?>
 </section>
 
 <?php

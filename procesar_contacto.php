@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/validaciones.php';
-include_once 'includes/funciones.php';
+include_once 'includes/contactos_crud.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = validarNombre(isset($_POST["nombre"]) ? $_POST["nombre"] : '');
