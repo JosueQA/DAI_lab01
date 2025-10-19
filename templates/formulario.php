@@ -1,19 +1,24 @@
 <?php
 $contacto_id = "";
 $contacto = "";
-if (isset($_GET['crud']) and $_GET['crud'] == "Editar") {
-    $contacto_id = intval($_GET['id']);
-    $archivo_csv = fopen("data/datos.csv", "r");
+if (isset($_GET['crud'])) {
 
-    # Buscamos el contacto
-    $indice = 0;
-    while (($datos = fgetcsv($archivo_csv)) !== false) {
-        global $contacto;
-        if ($indice === $contacto_id) {
-            $contacto = $datos;
+    switch ($_GET['crud']) {
+        case 'Editar':
+            $contacto_id = intval($_GET['id']);
+            $archivo_csv = fopen("data/datos.csv", "r");
+
+            # Buscamos el contacto
+            $indice = 0;
+            while (($datos = fgetcsv($archivo_csv)) !== false) {
+                global $contacto;
+                if ($indice === $contacto_id) {
+                    $contacto = $datos;
+                    break;
+                }
+                $indice++;
+            }
             break;
-        }
-        $indice++;
     }
 }
 
