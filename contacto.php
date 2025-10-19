@@ -9,7 +9,7 @@ include_once 'includes/contactos_crud.php';
     if (isset($_GET['id'])) {
         if (isset($_GET['crud'])) {
             if ($_GET['crud'] == 'Editar') {
-                editar_contacto(intval($_GET['id']));
+                include_once 'templates/formulario.php';
             } elseif ($_GET['crud'] == 'Eliminar') {
                 eliminar_contacto(intval($_GET['id']));
             }

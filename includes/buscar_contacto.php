@@ -13,6 +13,7 @@ function buscar_contacto($id) {
         }
         $indice++;
     }
+    fclose($archivo_csv);
 
     return $contacto;
 }

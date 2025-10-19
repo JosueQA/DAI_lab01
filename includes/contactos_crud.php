@@ -9,20 +9,7 @@ function guardarContacto($nombre, $email, $telefono, $imagen = '') {
 }
 
 function ver_contacto($id) {
-    $archivo_csv = fopen("data/datos.csv", "r");
-    $indice = 0;
-    $contacto = null;
-
-    # Buscamos el contacto
-    while (($datos = fgetcsv($archivo_csv)) !== false) {
-        if ($indice === $id) {
-            $contacto = $datos;
-            break;
-        }
-        $indice++;
-    }
-
-    fclose($archivo_csv);
+    $contacto = buscar_contacto($id);
 
     echo '<section class="container mt-4">';
     echo '<h2>Visualizar Contacto</h2>';
@@ -48,32 +35,39 @@ function ver_contacto($id) {
     echo '</section>';
 }
 
-function editar_contacto($id) {
-    $archivo_csv = fopen("data/datos.csv", "r");
-    $indice = 0;
-    $contacto = null;
-
+function editar_contacto_actualizar($id) {
     # Buscamos el contacto
-    while (($datos = fgetcsv($archivo_csv)) !== false) {
-        if ($indice === $id) {
-            $contacto = $datos;
-            break;
+    $contacto = buscar_contacto($id);
+
+    $csv_actual = fopen("data/datos.csv", "r");
+    $csv_nuevo = fopen("data/temp.csv", "w");
+
+    while (($linea = fgetcsv($csv_actual)) !== false) {
+        if ($linea[0] == $contacto[0]) {
+
+        } else {
+            fputcsv($csv_nuevo, $linea);
+
         }
-        $indice++;
     }
 
-    fclose($archivo_csv);
+    fclose($csv_actual);
+    fclose($csv_nuevo);
 
-    echo '<section class="container mt-4">';
-    echo '<h2>Editar Contacto</h2>';
+    rename("data/temp.csv", "data/datos.csv");
 
-    if ($contacto) {
-        include_once 'templates/formulario.php';
+    header("Location: index.php");
+    exit;
+}
+function editar_contacto_valores($posicion) {
+    if (isset($_GET['id']) and isset($_GET['crud']) and $_GET['crud'] == "Editar") {
+
+        $contacto = buscar_contacto(intval($_GET['id']));
+        return htmlspecialchars($contacto[$posicion]);
+
     } else {
-        echo '<div class="alert alert-warning">Contacto no encontrado.</div>';
+        return "";
     }
-
-    echo '</section>';
 }
 
 function eliminar_contacto($id) {
