@@ -12,7 +12,7 @@ function lista_contactos() {
         $link_eliminar = "includes/contacto_crud/contacto.php?id=$indice&crud=Eliminar";
 
         // Creamos la única celda.
-        echo "<td class='d-grid' style='grid-template-columns: 1fr 1fr 1fr'>";
+        echo "<td class='d-grid' style='grid-template-columns: 1fr 0.7fr 5fr'>";
 
         // 1. Enlace al nombre del contacto. $datos[1] es el nombre.
         // Hacemos que el enlace al nombre sea un elemento 'inline-block' para que pueda actuar como contenedor

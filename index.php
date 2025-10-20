@@ -16,6 +16,7 @@ include_once 'templates/lista_de_contactos.php';
         <thead>
         <tr>
             <th scope="col">👤 Nombre</th>
+            <th scope="col" class="text-end visually-hidden">⚙Acciones</th>
         </tr>
         </thead>
         <tbody>
