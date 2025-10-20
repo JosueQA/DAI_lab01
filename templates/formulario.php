@@ -12,7 +12,7 @@
 <form action='<?= (isset($_GET['id']))
         ? 'contacto_guardar.php?id=' . intval($_GET['id'])
         : 'includes/contacto_crud/contacto_guardar.php' ?>'
-      method="post" id="formulario-contacto" enctype="multipart/form-data">
+      method="post" id="formulario-contacto" enctype="multipart/form-data" class="">
     <!-- Mensajes de estado -->
     <?php if (isset($_GET['exito'])): ?>
         <div class="alert alert-success">Contacto guardado exitosamente</div>
@@ -28,6 +28,10 @@
 
     <?php if (isset($_GET['error'])): ?>
         <div class="alert alert-danger">Error al procesar el formulario</div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['id'])): ?>
+        <h2 class="centrar">Editar Contacto</h2>
     <?php endif; ?>
 
     <label for="nombre" class="form-label">👤 Nombre:</label>
@@ -60,6 +64,9 @@
     <?php
     if ((editar_contacto_valores(0)) != "") {
         echo '<button type="submit" class="btn btn-success mt-3">Actualizar</button>';
+        echo '
+                <br><br>
+                <a href="../../index.php" style="...">Ver lista de contactos</a>';
     } else {
         echo '<button type="submit" class="btn btn-success mt-3">Guardar</button>';
         echo '<button type="reset" class="btn btn-secondary mt-3">Limpiar</button>';
