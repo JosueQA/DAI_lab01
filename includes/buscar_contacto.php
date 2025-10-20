@@ -1,7 +1,11 @@
 <?php
 
 function buscar_contacto($id) {
-    $archivo_csv = fopen("../../data/datos.csv", "r");
+    if (isset($_GET['popup']) and $_GET['popup'] == 'Enabled' ){
+        $archivo_csv = fopen("data/datos.csv", "r");
+    } else {
+        $archivo_csv = fopen("../../data/datos.csv", "r");
+    }
     $indice = 0;
     $contacto = null;
 

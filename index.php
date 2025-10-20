@@ -4,7 +4,9 @@ include_once 'templates/lista_de_contactos.php';
 ?>
 
 <section class="container mt-4">
-
+    <?php (isset($_GET['crud']) and $_GET['crud'] == 'Eliminar' )
+        ? include_once 'templates/popup.php'
+        : ""?>
     <h2>Lista de Contactos</h2>
 
     <!-- Botón para crear contacto -->

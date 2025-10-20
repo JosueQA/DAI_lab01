@@ -9,7 +9,7 @@ function lista_contactos() {
 
         $link_ver = "includes/contacto_crud/contacto.php?id=$indice";
         $link_editar = "includes/contacto_crud/contacto.php?id=$indice&crud=Editar";
-        $link_eliminar = "includes/contacto_crud/contacto.php?id=$indice&crud=Eliminar";
+        $link_eliminar = "index.php?id=$indice&crud=Eliminar&popup=Enabled";
 
         // Creamos la única celda.
         echo "<td class='d-grid' style='grid-template-columns: 1fr 0.7fr 5fr'>";

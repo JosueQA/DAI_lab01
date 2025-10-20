@@ -4,9 +4,53 @@
     min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
 }
-
-.centrar {
+.popup_padre {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    animation: fondo_transparente 0.75s ease;
 }
+
+
+@keyframes fondo_transparente {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    text-align: center;
+    min-width: fit-content;
+    max-width: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px 15px !important;
+    background: white;
+    animation: aparecer 0.75s ease;
+
+}
+
+@keyframes aparecer {
+    from {
+        scale: 0.01;
+    }
+    to {
+        scale: 1;
+    }
+}
+
+
 
 @media (max-width: 767.98px) {
     .centrar {
