@@ -3,27 +3,37 @@ function lista_contactos() {
     $archivo_csv = fopen("data/datos.csv", "r");
     $indice = 0;
 
-    # En cada iteración se relaciona a un numero de indice que va de 0 hasta que ya no hayan lineas en el .csv, y que, por orden, coincide con su valor en su campo.
     while (($datos = fgetcsv($archivo_csv)) !== false) {
-        echo "<tr>";
+        // Usamos align-middle para centrar verticalmente, si el texto/botones ocupan más espacio
+        echo "<tr class='align-middle'>";
 
-        $link = "includes/contacto_crud/contacto.php?id=$indice";
+        $link_ver = "includes/contacto_crud/contacto.php?id=$indice";
+        $link_editar = "includes/contacto_crud/contacto.php?id=$indice&crud=Editar";
+        $link_eliminar = "includes/contacto_crud/contacto.php?id=$indice&crud=Eliminar";
 
-        // Enlace al nombre del contacto. $datos[0] = Nombre
-        echo "<td><a href='$link'>" . htmlspecialchars($datos[1]) . "</a></td>";
+        // Creamos la única celda.
+        echo "<td>";
 
-        // Enlace a editar el contacto
-        $link = "includes/contacto_crud/contacto.php?id=$indice&crud=Editar";
-        echo "<td><button 
-                class='btn btn-warning mt-3' 
-                onclick=\"window.location.href='$link'\"> Editar </button></td>";
+        // 1. Enlace al nombre del contacto. $datos[1] es el nombre.
+        // Hacemos que el enlace al nombre sea un elemento 'inline-block' para que pueda actuar como contenedor
+        // y usamos 'me-4' para darle un margen a la derecha del texto.
+        echo "<a href='$link_ver' class='d-inline-block me-4'>" . htmlspecialchars($datos[1]) . "</a>";
 
-        // Enlace a eliminar el contacto
-        $link = "includes/contacto_crud/contacto.php?id=$indice&crud=Eliminar";
-        echo "<td><button 
-                class='btn btn-danger mt-3 align-top'
-                onclick=\"window.location.href='$link'\">
-                Eliminar</button></td>";
+        // 2. Insertamos los botones directamente DESPUÉS del nombre,
+        // sin usar el div flotante (eliminamos 'float-end')
+
+        // Botón Editar: usamos 'me-2' para separarlo ligeramente del Eliminar
+        echo "<button 
+                class='btn btn-warning btn-sm me-2' 
+                onclick=\"window.location.href='$link_editar'\"> Editar </button>";
+
+        // Botón Eliminar
+        echo "<button 
+                class='btn btn-danger btn-sm'
+                onclick=\"window.location.href='$link_eliminar'\">
+                Eliminar</button>";
+
+        echo "</td>"; // Cierra td
 
         echo "</tr>";
         $indice++;

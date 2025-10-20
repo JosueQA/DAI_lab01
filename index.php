@@ -12,19 +12,17 @@ include_once 'templates/lista_de_contactos.php';
         ➕ Crear nuevo contacto
     </a>
 
-<table class="table table-hover">
-    <!-- Cabeceras -->
-    <thead>
-    <tr>
-        <th scope="col">👤 Nombre</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Aquí irían tus datos -->
-    <?php lista_contactos(); ?>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">👤 Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php lista_contactos(); ?>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </section>
 
 <?php
