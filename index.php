@@ -1,7 +1,6 @@
 <?php
 include_once 'templates/header.php';
 include_once 'templates/lista_de_contactos.php';
-include_once 'includes/contactos_crud.php';
 ?>
 
 <section class="container mt-4">

@@ -7,21 +7,21 @@ function lista_contactos() {
     while (($datos = fgetcsv($archivo_csv)) !== false) {
         echo "<tr>";
 
-        $link = "contacto.php?id=$indice";
+        $link = "includes/contacto_crud/contacto.php?id=$indice";
 
         // Enlace al nombre del contacto. $datos[0] = Nombre
-        echo "<td><a href='$link'>" . htmlspecialchars($datos[0]) . "</a></td>";
+        echo "<td><a href='$link'>" . htmlspecialchars($datos[1]) . "</a></td>";
 
         // Enlace a editar el contacto
-        $link = "contacto.php?id=$indice&crud=Editar";
+        $link = "includes/contacto_crud/contacto.php?id=$indice&crud=Editar";
         echo "<td><button 
                 class='btn btn-warning mt-3' 
                 onclick=\"window.location.href='$link'\"> Editar </button></td>";
 
         // Enlace a eliminar el contacto
-        $link = "contacto.php?id=$indice&crud=Eliminar";
+        $link = "includes/contacto_crud/contacto.php?id=$indice&crud=Eliminar";
         echo "<td><button 
-                class='btn btn-danger mt-3'
+                class='btn btn-danger mt-3 align-top'
                 onclick=\"window.location.href='$link'\">
                 Eliminar</button></td>";
 

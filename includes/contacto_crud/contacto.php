@@ -1,6 +1,6 @@
 <?php
-include_once 'templates/header.php';
-include_once 'includes/contactos_crud.php';
+include_once '../../templates/header.php';
+include_once '../buscar_contacto.php';
 ?>
 
 <!-- Pagina que proyectara el contacto -->
@@ -9,12 +9,12 @@ include_once 'includes/contactos_crud.php';
     if (isset($_GET['id'])) {
         if (isset($_GET['crud'])) {
             if ($_GET['crud'] == 'Editar') {
-                include_once 'templates/formulario.php';
+                include_once '../../templates/formulario.php';
             } elseif ($_GET['crud'] == 'Eliminar') {
-                eliminar_contacto(intval($_GET['id']));
+                include_once 'contacto_eliminar.php';
             }
         } else {
-            ver_contacto(intval($_GET['id']));
+            include_once 'contacto_ver.php';
         }
     } else {
         echo '<div class="alert alert-warning">No se especificó un contacto.</div>';
@@ -23,5 +23,5 @@ include_once 'includes/contactos_crud.php';
 </section>
 
 <?php
-include_once 'templates/footer.php';
+include_once '../../templates/footer.php';
 ?>
