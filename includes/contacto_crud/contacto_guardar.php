@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             fclose($csv_nuevo);
             fclose($archivo_csv);
-            rename("../data/temp.csv", "../data/datos.csv");
+            rename("../../data/temp.csv", "../../data/datos.csv");
         # -----------------------------------------------------------------
 
         } else {
