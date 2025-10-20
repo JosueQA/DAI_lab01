@@ -24,7 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $csv_nuevo = fopen("../../data/temp.csv", "w");
 
             while (($linea = fgetcsv($archivo_csv)) !== false) {
+
                 if ($linea[0] == intval($_GET['id'])) {
+                    if ($nombre_imagen == ""){
+                        $nombre_imagen = $linea[4];
+                    }
                     // Si el contacto coincide, lo reemplazamos
                     fputcsv($csv_nuevo, [$linea[0], $nombre, $email, $telefono, $nombre_imagen]);
                 } else {
