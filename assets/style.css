@@ -4,6 +4,18 @@
     min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
 }
+
+.nombre-contacto {
+    color: #0e2f53;
+    text-decoration: none;
+    display: inline-block;
+}
+.nombre-contacto:hover {
+    color: #0b2039;
+    font-weight: bold;
+    transform: scale(1.05);
+}
+
 .popup_padre {
     top: 0;
     left: 0;
@@ -11,9 +23,15 @@
     width: 100%;
     position: absolute;
     background: rgba(0,0,0,0.5);
-    animation: fondo_transparente 0.75s ease;
+    animation: fondo_transparente 0.1s ease;
+    transition: all 0.1s ease-in-out;
 }
 
+.btn-light.btn-confirmar:hover {
+    background-color: #dc3545; /* rojo Bootstrap */
+    color: white;
+    border-color: #dc3545;
+}
 
 @keyframes fondo_transparente {
     from {

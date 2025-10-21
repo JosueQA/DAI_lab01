@@ -20,7 +20,7 @@
             }
         ?>
         <button
-            class="btn btn-light btn-sm me-2"
+            class="btn btn-light btn-sm me-2 btn-confirmar"
             onclick="window.location.href='includes/contacto_crud/contacto.php?id=<?php echo $_GET['id']; ?>&crud=Eliminar'">
             Si
         </button>

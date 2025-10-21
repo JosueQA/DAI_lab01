@@ -1,5 +1,4 @@
 <?php
-
 $contacto = buscar_contacto(intval($_GET['id']));
 
 echo '<section class="container mt-4">';
@@ -18,6 +17,12 @@ if ($contacto) {
     }
     echo '</li>';
     echo '</ul>';
+
+    // Botones de acción
+    echo '<div class="mt-3 centrar">';
+    echo '<a href="contacto.php?id=' . intval($_GET['id']) . '&crud=Editar" class="btn btn-warning me-2">Editar</a>';
+    echo '<a href="../../index.php?id=' . intval($_GET['id']) . '&crud=Eliminar&popup=Enabled" class="btn btn-danger">Eliminar</a>';    echo '</div>';
+
     echo '<a href="../../index.php" class="btn btn-primary mt-3 centrar">⬅️ Volver a la lista</a>';
 } else {
     echo '<div class="alert alert-warning">Contacto no encontrado.</div>';

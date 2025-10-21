@@ -1,52 +1,32 @@
 <?php
 function lista_contactos() {
     $archivo_csv = fopen("data/datos.csv", "r");
-    $indice = 0;
+    $contactos = [];
 
+    // Cargar todos los contactos en un array
     while (($datos = fgetcsv($archivo_csv)) !== false) {
-        // Usamos align-middle para centrar verticalmente, si el texto/botones ocupan más espacio
-        echo "<tr class='align-middle'>";
-
-        $link_ver = "includes/contacto_crud/contacto.php?id=$indice";
-        $link_editar = "includes/contacto_crud/contacto.php?id=$indice&crud=Editar";
-        $link_eliminar = "index.php?id=$indice&crud=Eliminar&popup=Enabled";
-
-        // Creamos la única celda.
-        echo "<td class='d-grid' style='grid-template-columns: 1fr 0.7fr 5fr'>";
-
-        // 1. Enlace al nombre del contacto. $datos[1] es el nombre.
-        // Hacemos que el enlace al nombre sea un elemento 'inline-block' para que pueda actuar como contenedor
-        // y usamos 'me-4' para darle un margen a la derecha del texto.
-        echo "
-        <span class='centrar'>
-            <a href='$link_ver' class='d-inline-block me-4'>" . htmlspecialchars($datos[1]) . "</a>
-        </span>";
-
-        // 2. Insertamos los botones directamente DESPUÉS del nombre,
-        // sin usar el div flotante (eliminamos 'float-end')
-
-        // Botón Editar: usamos 'me-2' para separarlo ligeramente del Eliminar
-        echo "
-        <span class='centrar'>
-            <button 
-                class='btn btn-warning btn-sm me-2' 
-                onclick=\"window.location.href='$link_editar'\"> Editar </button>
-        </span>";
-
-        // Botón Eliminar
-        echo "
-        <span class='centrar'>
-            <button 
-                class='btn btn-danger btn-sm'
-                onclick=\"window.location.href='$link_eliminar'\">
-            Eliminar</button>
-        </span>";
-
-        echo "</td>"; // Cierra td
-
-        echo "</tr>";
-        $indice++;
+        $contactos[] = $datos;
     }
     fclose($archivo_csv);
+
+    // Ordenar alfabéticamente por nombre (posición 1)
+    usort($contactos, function($a, $b) {
+        return strcasecmp($a[1], $b[1]);    });
+
+    // Mostrar la tabla ordenada
+    foreach ($contactos as $datos) {
+        $id_real = $datos[0]; // ID original del contacto
+        $link_ver = "includes/contacto_crud/contacto.php?id=$id_real";
+
+        echo "<tr class='align-middle'>";
+        echo "<td class='text-start'>";
+        echo "
+    <span class='centrar'>
+        <a href='$link_ver' class='d-inline-block me-4 nombre-contacto'>" . htmlspecialchars($datos[1]) . "</a>
+    </span>";
+        echo "</td>";
+        echo "</tr>";
+    }
+
 }
 ?>

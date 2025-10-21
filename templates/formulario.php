@@ -68,8 +68,10 @@
                 <br><br>
                 <a href="../../index.php" style="...">Ver lista de contactos</a>';
     } else {
-        echo '<button type="submit" class="btn btn-success mt-3">Guardar</button>';
-        echo '<button type="reset" class="btn btn-secondary mt-3">Limpiar</button>';
+        echo '<div class="d-flex gap-3 mt-3">';
+        echo '<button type="submit" class="btn btn-success">Guardar</button>';
+        echo '<button type="reset" class="btn btn-secondary">Limpiar</button>';
+        echo '</div>';
     }
     ?>
     <br><br>
