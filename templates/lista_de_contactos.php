@@ -1,4 +1,7 @@
 <?php
+/**
+@return void
+*/
 function lista_contactos() {
     $archivo_csv = fopen("data/datos.csv", "r");
     $contactos = [];

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Contactos</title>
+    <title>Mi libreta de Contactos</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <?= (isset($_GET['id']))
             ? '<link rel="stylesheet" href="../../assets/style.css">'
             : '<link rel="stylesheet" href="assets/style.css">'?>
